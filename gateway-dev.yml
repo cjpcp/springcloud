@@ -1,0 +1,35 @@
+server:
+  port: 8222
+spring:
+  application:
+    name: yts-shop-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: yts-shop-user
+          uri: lb://yts-shop-user
+          predicates:
+            - Path=/yts-shop-user/**
+          filters:
+            - StripPrefix=1
+        - id: yts-shop-web
+          uri: lb://yts-shop-web
+          predicates:
+            - Path=/yts-shop-web/**
+          filters:
+            - StripPrefix=1
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8888/eureka
+  instance:
+    prefer-ip-address: true
+springdoc:
+  swagger-ui:
+    urls:
+      - name: yts-shop-user
+        url: /yts-shop-user/v3/api-docs
+      - name: yts-shop-web
+        url: /yts-shop-web/v3/api-docs

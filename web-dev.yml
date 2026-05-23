@@ -1,0 +1,57 @@
+server:
+  port: 9002
+spring:
+  application:
+    name: yts-shop-web
+  boot:
+    admin:
+      client:
+        url: http://localhost:7779 # Spring Boot Admin Server地址
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"  # 暴露所有端点
+      base-path: /actuator  # 默认路径
+    jmx:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always  # 显示健康检查详情
+    metrics:
+      enabled: true  # 开启指标
+    logfile:
+      enabled: true  # 开启日志查看
+    env:
+      enabled: true  # 开启环境变量查看
+    beans:
+      enabled: true  # 开启Bean查看
+    configprops:
+      enabled: true  # 开启配置属性查看
+    threaddump:
+      enabled: true  # 开启线程转储
+    heapdump:
+      enabled: true  # 开启堆转储
+
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+eureka:
+  client:
+    register-with-eureka: true # 作为客户端需要注册到Eureka
+    fetch-registry: true  # 作为客户端需要从Eureka获取注册信息
+    service-url: # 客户端注册地址
+      defaultZone: http://localhost:8888/eureka
+  instance:
+    # 优先使用该服务的IP地址注册到Eureka，在生产环境建议改为true
+    prefer-ip-address: true
+yts-shop-user:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+feign:
+  circuitbreaker:
+      enabled: true
