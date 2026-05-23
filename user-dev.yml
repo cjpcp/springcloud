@@ -4,7 +4,7 @@ spring:
   application:
     name: yts-shop-user
   datasource:
-    url: jdbc:mysql://172.23.111.123:3306/springcloud?characterEncoding=UTF8&useSSL=false
+    url: jdbc:mysql://172.23.111.123:3307/springcloudv2?characterEncoding=UTF8&useSSL=false
     username: root
     password: 123456
   jpa:
