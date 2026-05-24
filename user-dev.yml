@@ -3,6 +3,13 @@ server:
 spring:
   application:
     name: yts-shop-user
+  zipkin:
+    base-url: http://localhost:9042
+    sender:
+      type: web
+  sleuth:
+    sampler:
+      probability: 1
   datasource:
     url: jdbc:mysql://172.23.111.123:3306/springcloud?characterEncoding=UTF8&useSSL=false
     username: root
