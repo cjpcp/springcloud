@@ -14,8 +14,13 @@ spring:
     admin:
       client:
         url: http://localhost:7779 # Spring Boot Admin Server地址
-
-
+  rabbitmq:
+    host: 172.23.111.123
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+  
 management:
   endpoints:
     web:
